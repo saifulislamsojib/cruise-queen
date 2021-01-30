@@ -29,23 +29,29 @@ function calculateTotal() {
     const firstClassCount = getInputValue("first-class");
     const economyCount = getInputValue("economy");
     const subtotalAmount = firstClassCount * 150 + economyCount * 100;
-    conditionalDisplay(subtotalAmount, subtotal);
+    conditionalDisplay(subtotalAmount, subtotal, firstClassCount, economyCount);
 
     const chargeAmount = document.getElementById('charge-amount');
     const taxAmount = subtotalAmount * 0.1;
-    conditionalDisplay(taxAmount, chargeAmount);
+    conditionalDisplay(taxAmount, chargeAmount,  firstClassCount, economyCount);
 
     const grandTotal = subtotalAmount + taxAmount;
-    conditionalDisplay(grandTotal, totalAmount);
+    conditionalDisplay(grandTotal, totalAmount,  firstClassCount, economyCount);
 }
 
 // conditional amount
-function conditionalDisplay(amount, id){
-    if (amount.toString().length == 1) {
-        id.innerText = "0" + amount;
+function conditionalDisplay(amount, id,  firstClassCount, economyCount){
+    id.innerText = "00";
+    if (firstClassCount >= 0 && economyCount >= 0) {
+        if (amount.toString().length == 1) {
+            id.innerText = "0" + amount;
+        }
+        else{
+            id.innerText = amount;
+        }
     }
     else{
-        id.innerText = amount;
+        alert("Enter Positive Number");
     }
 }
 
