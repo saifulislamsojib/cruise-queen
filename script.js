@@ -28,15 +28,25 @@ function calculateTotal() {
     const subtotal = document.getElementById('subtotal-amount');
     const firstClassCount = getInputValue("first-class");
     const economyCount = getInputValue("economy");
-    const subtotalAmount = firstClassCount * 150 + economyCount * 100;;
-    subtotal.innerText = subtotalAmount;
+    const subtotalAmount = firstClassCount * 150 + economyCount * 100;
+    conditionalDisplay(subtotalAmount, subtotal);
 
     const chargeAmount = document.getElementById('charge-amount');
     const taxAmount = subtotalAmount * 0.1;
-    chargeAmount.innerText = taxAmount;
+    conditionalDisplay(taxAmount, chargeAmount);
 
     const grandTotal = subtotalAmount + taxAmount;
-    totalAmount.innerText = grandTotal;
+    conditionalDisplay(grandTotal, totalAmount);
+}
+
+// conditional amount
+function conditionalDisplay(amount, id){
+    if (amount.toString().length == 1) {
+        id.innerText = "0" + amount;
+    }
+    else{
+        id.innerText = amount;
+    }
 }
 
 // get Input Value
@@ -50,7 +60,7 @@ function getInputValue(ticket) {
 function orderButton() {
     const modalBody = document.getElementById('modal-body');
     const modalTitle = document.getElementById('modal-title');
-    if (totalAmount.innerText == "0" || totalAmount.innerText == "00") {
+    if (totalAmount.innerText == "00") {
         modalBody.style.display = "none";
         modalTitle.innerText = "Please Enter Ticket Quantity ??";
         modalTitle.style.color = "red";
