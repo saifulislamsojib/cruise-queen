@@ -79,7 +79,7 @@ function orderButton() {
 // Modal Display Information
 function modalDisplay(modalTitle, modalBody) {
     modalTitle.innerText = "Thank You For Booked Tickets";
-    modalTitle.style.color = "black";
+    modalTitle.style.color = "#198754";
     modalBody.style.display = "block";
     const firstClassCount = getInputValue("first-class");
     const economyCount = getInputValue("economy");
