@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="booking-form p-4">
+                <div class="booking-form mb-4 p-4">
                     <h3>Book Ocean Time</h3>
                     <div class="my-2">
                         <label for="">Flying From</label>
@@ -80,7 +80,7 @@
                         <button onclick="handleTicket('first-class', false)" class="plus-minus-btn text-white btn btn-primary me-3"><i class="fas fa-minus"></i></button>
                         <div>
                             <label for="">First Class ($150)</label>
-                            <input id="first-class-count" class="inp-style" type="number" value="0">
+                            <input oninput="realTimeUpdate()" id="first-class-count" class="inp-style" type="number" value="0">
                         </div>
                         <button onclick="handleTicket('first-class', true)" class="plus-minus-btn text-white btn btn-primary ms-3"><i class="fas fa-plus"></i></button>
                     </div>
@@ -89,7 +89,7 @@
                         <button onclick="handleTicket('economy', false)" class="plus-minus-btn text-white btn btn-primary me-3"><i class="fas fa-minus"></i></button>
                         <div>
                             <label for="">Economy ($100)</label>
-                            <input id="economy-count" class="inp-style" type="number" value="0">
+                            <input oninput="realTimeUpdate()" id="economy-count" class="inp-style" type="number" value="0">
                         </div>
                         <button onclick="handleTicket('economy', true)" class="plus-minus-btn text-white btn btn-primary ms-3"><i class="fas fa-plus"></i></button>
                     </div>
@@ -133,11 +133,13 @@
         <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <h5 id="modal-title" class="modal-title" id="staticBackdropLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-            ...
+            <div id="modal-body" class="modal-body">
+                <p>First Class Booked Tickets : <span id="first-class-booked"></span></p>
+                <p>Economy Booked Tickets : <span id="economy-booked"></span></p>
+                <p>Total Paid : $ <span id="total-paid"></span></p>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
