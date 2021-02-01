@@ -7,7 +7,17 @@ function handleTicket(ticket, isIncrease) {
 }
 // real Time Update
 function realTimeUpdate() {
-    calculateTotal();
+    const firstClassCount = getInputValue("first-class");
+    const economyCount = getInputValue("economy");
+    if (firstClassCount >= 0 && economyCount >= 0) {
+        calculateTotal();
+    }
+    else{
+        document.getElementById('first-class-count').value = 0;
+        document.getElementById('economy-count').value = 0;
+        alert("Enter Positive Number");
+        calculateTotal();
+    }
 }
 
 // handle increase Decrease
@@ -29,29 +39,23 @@ function calculateTotal() {
     const firstClassCount = getInputValue("first-class");
     const economyCount = getInputValue("economy");
     const subtotalAmount = firstClassCount * 150 + economyCount * 100;
-    conditionalDisplay(subtotalAmount, subtotal, firstClassCount, economyCount);
+    conditionalDisplay(subtotalAmount, subtotal);
 
     const chargeAmount = document.getElementById('charge-amount');
     const taxAmount = subtotalAmount * 0.1;
-    conditionalDisplay(taxAmount, chargeAmount,  firstClassCount, economyCount);
+    conditionalDisplay(taxAmount, chargeAmount);
 
     const grandTotal = subtotalAmount + taxAmount;
-    conditionalDisplay(grandTotal, totalAmount,  firstClassCount, economyCount);
+    conditionalDisplay(grandTotal, totalAmount);
 }
 
 // conditional amount
-function conditionalDisplay(amount, id,  firstClassCount, economyCount){
-    id.innerText = "00";
-    if (firstClassCount >= 0 && economyCount >= 0) {
-        if (amount.toString().length == 1) {
-            id.innerText = "0" + amount;
-        }
-        else{
-            id.innerText = amount;
-        }
+function conditionalDisplay(amount, id){
+    if (amount.toString().length == 1) {
+        id.innerText = "0" + amount;
     }
     else{
-        alert("Enter Positive Number");
+        id.innerText = amount;
     }
 }
 
